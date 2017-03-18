@@ -18,11 +18,12 @@ public class ApplicationManager {
     public void init() {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        wd.get("http://localhost/addressbook/group.php");
-        sessionHelper.login("admin", "secret");
+        wd.get("http://localhost/addressbook/");
+        sessionHelper = new SessionHelper(wd);
+        sessionHelper.login("admin","secret");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
-        sessionHelper = new SessionHelper(wd);
+
     }
 
 
