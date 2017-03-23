@@ -2,6 +2,7 @@ package ru.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -33,6 +34,14 @@ public class HelperBase {
             wd.switchTo().alert();
             return true;
         } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
+    boolean isElementPresent(By locator){
+        try{
+            wd.findElement(locator);
+            return true;
+        }catch (NoSuchElementException ex){
             return false;
         }
     }
