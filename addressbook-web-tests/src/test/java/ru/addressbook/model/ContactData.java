@@ -4,6 +4,7 @@ package ru.addressbook.model;
  * Created by Админ on 09.04.2017.
  */
 public class ContactData {
+
     private int id;
     private String firstname;
     private String lastname;
@@ -11,6 +12,10 @@ public class ContactData {
     private String homePhone;
     private String mobilePhone;
     private String workPhone;
+
+    public int getId() {
+        return id;
+    }
 
     public String getWorkPhone() {
         return workPhone;
