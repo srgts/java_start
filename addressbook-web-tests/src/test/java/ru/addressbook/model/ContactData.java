@@ -1,5 +1,7 @@
 package ru.addressbook.model;
 
+import java.io.File;
+
 /**
  * Created by Админ on 09.04.2017.
  */
@@ -13,6 +15,17 @@ public class ContactData {
     private String mobilePhone;
     private String workPhone;
     private String allPhones;
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
+
+    private File photo;
 
     public String getAllPhones() {
         return allPhones;
@@ -69,6 +82,15 @@ public class ContactData {
 
     public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
         return this;
     }
 }

@@ -3,6 +3,8 @@ package ru.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.addressbook.model.ContactData;
 
 import java.util.HashSet;
@@ -31,7 +33,8 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
-    public ContactData infoFromEditForm (ContactData contact){
+
+    public ContactData infoFromEditForm(ContactData contact) {
         initContactModificationById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
@@ -45,7 +48,7 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    private void initContactModificationById (int id){
+    private void initContactModificationById(int id) {
         WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value = '%s']", id)));
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List<WebElement> cells = row.findElements(By.tagName("td"));
@@ -57,4 +60,29 @@ public class ContactHelper extends HelperBase {
 
     }
 
+    public void initContactCreation() {
+        wd.findElement(By.linkText("add new")).click();
+
+    }
+
+    public void submitContactCreation() {
+        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    }
+
+    public void fillContactForm(ContactData contactData, boolean creation) {
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("lastname"), contactData.getLastname());
+        attach(By.name("photo"), contactData.getPhoto());
+        if (creation) {
+            if (contactData.getGroup() != null) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
+    }
+
+    public void returnToHomePage() {
+        wd.findElement(By.linkText("home")).click();
+    }
 }
