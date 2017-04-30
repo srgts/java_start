@@ -32,7 +32,7 @@ public class ApplicationManager {
         }else if (browser.equals(BrowserType.IE)){
             wd = new InternetExplorerDriver();
         }
-        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
         wd.get("http://localhost/addressbook");
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin","secret");
