@@ -17,9 +17,9 @@ public class DbConnectionTest {
 
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?"
-                    +"user=root&password=" /*+ "fussa?useLegacyDatetimeCode=false&amp;serverTimezone=UTC"*/
-                    +"&verifyServerCertificate=false" + "&useSSL=false"+ "&requireSSL=false"
-                            + "&useLegacyDatetimeCode=false" + "&amp" + "&serverTimezone=UTC");
+                    +"user=root&password=" + "&useLegacyDatetimeCode=false&amp&serverTimezone=UTC"
+                    /*+"&verifyServerCertificate=false" + "&useSSL=false"+ "&requireSSL=false"
+                            + "&useLegacyDatetimeCode=false" + "&amp" + "&serverTimezone=UTC"*/);
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT group_id, group_name, group_header, group_footer FROM group_list WHERE group_name = 'name'");
