@@ -17,7 +17,7 @@ public class DbConnectionTest {
 
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?"
-                    +"user=root&password=" + "&useLegacyDatetimeCode=false&amp&serverTimezone=UTC"
+                    +"user=root&password="/* + "&useLegacyDatetimeCode=false&amp&serverTimezone=UTC"*/
                     /*+"&verifyServerCertificate=false" + "&useSSL=false"+ "&requireSSL=false"
                             + "&useLegacyDatetimeCode=false" + "&amp" + "&serverTimezone=UTC"*/);
 
