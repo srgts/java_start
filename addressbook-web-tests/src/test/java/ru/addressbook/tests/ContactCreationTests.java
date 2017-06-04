@@ -2,6 +2,8 @@ package ru.addressbook.tests;
 
 import org.testng.annotations.Test;
 import ru.addressbook.model.ContactData;
+import ru.addressbook.model.GroupData;
+import ru.addressbook.model.Groups;
 
 import java.io.File;
 
@@ -12,15 +14,19 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation(){
+        Groups groups = app.db().groups();
+        File photo = new File("src/test/resources/Record.png");
+        ContactData newContact =new ContactData().withFirstname("test_name").withLastname("test_surname").withPhoto(photo)
+                .inGroup(groups.iterator().next());
         app.goTo().homePage();
         app.contact().initContactCreation();
-        File photo = new File("src/test/resources/Record.png");
-        app.contact().fillContactForm(new ContactData().withFirstname("test_name")
-                .withLastname("test_surname").withGroup("test2").withPhoto(photo), true);
+        app.contact().fillContactForm(newContact, true);
         app.contact().submitContactCreation();
         app.contact().returnToHomePage();
 
     }
+
+
     @Test (enabled = false)
     public void testCurrentDir(){
         File currentDir = new File(".");
