@@ -3,6 +3,7 @@ package ru.mantis.tests;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.mantis.appmanager.ApplicationManager;
+import ru.mantis.appmanager.BrowserType;
 
 /**
  * Created by Админ on 18.03.2017.
