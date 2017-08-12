@@ -68,17 +68,17 @@ public class JamesHelper {
         }catch (Exception e){
             e.printStackTrace();
         }
-        readUntil("Login id:");
+        /*readUntil("Login id:");
         write("");
         readUntil("Password:");
-        write("");
+        write("");*/
 
         readUntil("Login id:");
         write(login);
         readUntil("Password:");
         write(password);
 
-        readUntil("Welcome " + login + ". Help for a list of commands");
+        readUntil("Welcome " + login + ". HELP for a list of commands");
     }
 
     private String readUntil(String pattern){
