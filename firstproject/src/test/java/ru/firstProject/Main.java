@@ -1,18 +1,17 @@
 package ru.firstProject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
 
-    public Main(){
+    public Main() {
         start();
     }
 
     protected final int min = -273;
     protected final int max = 5526;
-    protected int res = startResultVal(min, max);
+    protected final int res = startResultVal(min, max);
 
 
     public int getRes() {
@@ -28,24 +27,26 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         Main main = new Main();
         int[] numArr = main.getNumArr();
         int res = main.getRes();
+        res = main.takeRes(numArr, res);
+        main.result(res);
+    }
 
+    protected int takeRes(int[] numArr, int res) {
         for (int i = 0; i < numArr.length; i++) {
             int x = numArr[i];
-            if (main.isCorrectNum(x)) {
+            if (isCorrectNum(x)) {
                 if (Math.abs(x) < Math.abs(res) || Math.abs(x) == Math.abs(res) && x > res) {
                     res = x;
                 }
             } else {
-                main.printError();
+                printError();
                 res = 0;
-                System.out.println("Число, ближайшее к нулю = " + res);
             }
         }
-        System.out.println("Число, ближайшее к нулю = " + res);
+        return res;
     }
 
 
@@ -80,12 +81,19 @@ public class Main {
             return numArr;
         } catch (Exception e) {
             printError();
-            res = 0;
-            System.out.println("Число, ближайшее к нулю = " + res);
+            int res = 0;
+            result(res);
+            System.exit(0);
         }
         return null;
     }
-    public void start(){
+
+    public void start() {
         System.out.println("Введите целые числа от " + getMin() + " до " + getMax() + " через пробел:");
     }
+
+    protected void result(int res) {
+        System.out.println("Результат = " + res);
+    }
+
 }
