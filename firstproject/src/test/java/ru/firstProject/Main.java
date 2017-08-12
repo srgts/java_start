@@ -40,9 +40,12 @@ public class Main {
             if (isCorrectNum(x)) {
                 if (Math.abs(x) < Math.abs(res) || Math.abs(x) == Math.abs(res) && x > res) {
                     res = x;
+                    if(res == 0){
+                        break;
+                    }
                 }
             } else {
-                printError();
+                System.out.println("Вы ввели число, не входящее в указанный диапазон");
                 res = 0;
             }
         }
@@ -57,9 +60,9 @@ public class Main {
         return true;
     }
 
-    protected void printError() {
+    /*protected void printError() {
         System.out.println("Введены некорректные данные");
-    }
+    }*/
 
     private int startResultVal(int a, int b) {
         if (Math.abs(a) > Math.abs(b)) {
@@ -70,17 +73,19 @@ public class Main {
     public int[] getNumArr() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int numArr[];
+        Object q = null;
         try {
             String input = br.readLine();
             String strArr[] = input.split(" ");
             numArr = new int[strArr.length];
 
             for (int i = 0; i < strArr.length; i++) {
+                q = (strArr[i]);
                 numArr[i] = Integer.parseInt(strArr[i]);
             }
             return numArr;
         } catch (Exception e) {
-            printError();
+            System.out.println("Вы ввели некорректное число или не ввели ничего. Значение, которое не соответствует - (<<< " + q + " >>>)");
             int res = 0;
             result(res);
             System.exit(0);
